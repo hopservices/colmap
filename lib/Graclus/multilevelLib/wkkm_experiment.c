@@ -782,7 +782,7 @@ int local_search(CtrlType* ctrl, GraphType* graph, int nparts, int chain_length,
     if (sum[i] > 0) obj += squared_sum[i] * 1.0 / sum[i];
 
   // srand(time(NULL));
-  srand(0);
+  srand(4321);
   // temperature = DEFAULT_TEMP;
   loopTimes = 0;
 

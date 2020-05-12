@@ -44,10 +44,7 @@ namespace flann {
  * Seeds the random number generator
  *  @param seed Random seed
  */
-inline void seed_random(unsigned int seed) {
-  // srand(seed);
-  srand(0);
-}
+inline void seed_random(unsigned int seed) { srand(4321); }
 
 /*
  * Generates a random double value.

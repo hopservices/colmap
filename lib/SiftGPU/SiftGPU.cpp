@@ -102,7 +102,7 @@ SiftGPUEX::SiftGPUEX()
 	_view_debug = 0;
 	GlobalUtil::_UseSiftGPUEX = 1;
 	// srand((unsigned int)time(NULL));
-  srand(0);
+  srand(4321);
 	RandomizeColor();
 }
 

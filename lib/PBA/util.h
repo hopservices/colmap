@@ -419,7 +419,7 @@ float random_ratio(float percent) {
 void AddNoise(vector<CameraT>& camera_data, vector<Point3D>& point_data,
               float percent) {
   // std::srand((unsigned int)time(NULL));
-  std::srand(0);
+  std::srand(4321);
 
   for (size_t i = 0; i < camera_data.size(); ++i) {
     camera_data[i].f *= random_ratio(percent);
@@ -446,7 +446,7 @@ void AddStableNoise(vector<CameraT>& camera_data, vector<Point3D>& point_data,
                     float percent) {
   ///
   // std::srand((unsigned int)time(NULL));
-  std::srand(0);
+  std::srand(4321);
   // do not modify the visibility status..
   vector<float> zz0(ptidx.size());
   vector<CameraT> backup = camera_data;
