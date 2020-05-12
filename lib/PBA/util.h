@@ -18,14 +18,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <math.h>
-#include <time.h>
-#include <iomanip>
 #include <algorithm>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <time.h>
+#include <vector>
 using namespace std;
 #include "DataInterface.h"
 
@@ -116,7 +116,7 @@ bool LoadNVM(ifstream& in, vector<CameraT>& camera_data,
       in >> cidx >> fidx >> imx >> imy;
 
       camidx.push_back(cidx);  // camera index
-      ptidx.push_back(i);  // point index
+      ptidx.push_back(i);      // point index
 
       // add a measurment to the vector
       measurements.push_back(Point2D(imx, imy));
@@ -250,7 +250,7 @@ bool LoadBundlerOut(const char* name, ifstream& in,
       in >> cidx >> fidx >> imx >> imy;
 
       camidx.push_back(cidx);  // camera index
-      ptidx.push_back(i);  // point index
+      ptidx.push_back(i);      // point index
 
       // add a measurment to the vector
       measurements.push_back(Point2D(imx, -imy));
@@ -418,7 +418,9 @@ float random_ratio(float percent) {
 
 void AddNoise(vector<CameraT>& camera_data, vector<Point3D>& point_data,
               float percent) {
-  std::srand((unsigned int)time(NULL));
+  // std::srand((unsigned int)time(NULL));
+  std::srand(0);
+
   for (size_t i = 0; i < camera_data.size(); ++i) {
     camera_data[i].f *= random_ratio(percent);
     camera_data[i].t[0] *= random_ratio(percent);
@@ -443,7 +445,8 @@ void AddStableNoise(vector<CameraT>& camera_data, vector<Point3D>& point_data,
                     const vector<int>& ptidx, const vector<int>& camidx,
                     float percent) {
   ///
-  std::srand((unsigned int)time(NULL));
+  // std::srand((unsigned int)time(NULL));
+  std::srand(0);
   // do not modify the visibility status..
   vector<float> zz0(ptidx.size());
   vector<CameraT> backup = camera_data;
@@ -651,7 +654,7 @@ bool RemoveInvisiblePoints(vector<CameraT>& camera_data,
     vector<int> pv(point_data.size(), 0);
     for (size_t i = 0; i < ptidx.size(); ++i) {
       int cid = camidx[i], pid = ptidx[i];
-      if (!pmask[pid]) continue;  // point already removed
+      if (!pmask[pid]) continue;      // point already removed
       if (cv[cid] < min_observation)  // this camera shall be removed.
       {
         ///
